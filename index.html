@@ -21,6 +21,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow: hidden; /* To hide airplanes flying outside */
     }
 
     /* Header Styling */
@@ -31,7 +32,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky; /* Keeps it visible on scroll */
+      position: sticky;
       top: 0;
       z-index: 1000;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
@@ -41,13 +42,13 @@
       height: 50px;
       width: 50px;
       object-fit: contain;
-      margin-right: 0.5rem; /* Minimal margin next to the title */
+      margin-right: 0.5rem;
     }
 
     header h1 {
       font-size: 1.8rem;
       margin: 0;
-      white-space: nowrap; /* Prevents breaking to a new line */
+      white-space: nowrap;
     }
 
     nav {
@@ -79,25 +80,13 @@
 
     /* Main Content Styling */
     .main-content {
-      flex: 1; /* Ensures the footer stays at the bottom */
+      flex: 1;
       padding: 2rem;
-    }
-
-    section {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    section h2 {
-      margin-bottom: 0.5rem;
     }
 
     /* Footer Styling */
     footer {
-      background: linear-gradient(to right, #00509e, #003366); /* Gradient for footer */
+      background: linear-gradient(to left, #003366, #00509e); /* Gradient for footer */
       color: white;
       text-align: center;
       padding: 1rem;
@@ -105,13 +94,65 @@
       bottom: 0;
       width: 100%;
     }
+
+    /* Airplanes Background */
+    .airplane-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Prevent interaction */
+      overflow: hidden;
+      z-index: -1; /* Behind the content */
+    }
+
+    .airplane {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: url('assets/airplane.svg') no-repeat center/contain; /* Replace with your airplane SVG */
+      animation: fly 8s linear infinite;
+    }
+
+    .airplane::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -50px;
+      width: 50px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.5);
+      animation: trail 8s linear infinite;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fly {
+      0% {
+        transform: translate(-50px, 50vh) rotate(0deg);
+      }
+      100% {
+        transform: translate(110vw, -50vh) rotate(360deg);
+      }
+    }
+
+    @keyframes trail {
+      0% {
+        opacity: 1;
+        width: 50px;
+      }
+      100% {
+        opacity: 0;
+        width: 0px;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div style="display: flex; align-items: center;">
-      <img src="logo-placeholder.png" alt="Logo" /> <!-- Replace with actual logo -->
+      <img src="assets/logo.png" alt="Logo" /> <!-- Replace with your logo -->
       <h1>Comhok</h1>
     </div>
     <nav>
@@ -128,6 +169,13 @@
   <!-- Main Content -->
   <div class="main-content">
     <!-- No tabs or main sections as requested -->
+  </div>
+
+  <!-- Airplanes Background -->
+  <div class="airplane-container">
+    <div class="airplane" style="top: 10%; left: -10%; animation-delay: 0s;"></div>
+    <div class="airplane" style="top: 50%; left: -20%; animation-delay: 2s;"></div>
+    <div class="airplane" style="top: 80%; left: -30%; animation-delay: 4s;"></div>
   </div>
 
   <!-- Footer -->
