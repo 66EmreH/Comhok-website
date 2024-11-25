@@ -1,43 +1,144 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onderhoud</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100vh;
-            text-align: center;
-        }
-        .message {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .contact {
-            padding: 10px;
-            background-color: #f1f1f1;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comhok</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #e6f7ff, #003366);
+      color: #333;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    /* Header Styling */
+    header {
+      background-color: rgba(0, 51, 102, 0.8); /* Semi-transparent dark blue */
+      color: white;
+      padding: 0.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; /* Keeps it visible on scroll */
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+    }
+
+    header img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+      margin-right: 1rem;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      flex: 1;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1.2rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Content Styling */
+    .main-content {
+      padding: 2rem;
+    }
+
+    .search-bar {
+      margin: 1rem 0;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer Styling */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(0, 51, 102, 0.8);
+      color: white;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    <div class="message">
-        Deze site is in onderhoud ouleh, ga weg en trek bak
+  <!-- Header -->
+  <header>
+    <img src="logo-placeholder.png" alt="Logo" /> <!-- Replace with actual logo -->
+    <h1>Comhok</h1>
+    <nav>
+      <a href="#statistieken">Statistieken</a>
+      <a href="#links">Links</a>
+      <a href="#varia">Varia</a>
+      <a href="#random">Random</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="search-bar">
+      <input type="text" placeholder="Search Comhok..." />
     </div>
-    <footer class="contact">
-        Contact: Sjon | Telefoon: +31 6 11-42-suf-7-32
-    </footer>
+    <section id="statistieken">
+      <h2>Statistieken</h2>
+      <p>Content for statistieken goes here.</p>
+    </section>
+    <section id="links">
+      <h2>Links</h2>
+      <p>Content for links goes here.</p>
+    </section>
+    <section id="varia">
+      <h2>Varia</h2>
+      <p>Content for varia goes here.</p>
+    </section>
+    <section id="random">
+      <h2>Random</h2>
+      <p>Content for random goes here.</p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Comhok | Created for friends</p>
+  </footer>
 </body>
 </html>
-
-
-
