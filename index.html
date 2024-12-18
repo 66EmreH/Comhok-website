@@ -109,12 +109,13 @@
 
     .airplane {
       position: absolute;
-      width: var(--airplane-size, 40px); /* Default size is 40px */
-      height: var(--airplane-size, 40px); /* Matches width */
-      background: url('assets/pngegg.png') no-repeat center/contain; /* Ensure this points to the correct image */
-      transform: rotate(180deg); /* Rotates the airplane to face right */
-      animation: fly-straight 8s linear infinite; /* Assigns animation for straight-line flight */
+      width: var(--airplane-size, 40px); /* Parameterized size */
+      height: var(--airplane-size, 40px);
+      background: url('assets/airplane.png') no-repeat center/contain; /* Airplane image */
+      transform: rotate(var(--rotation, 0deg)); /* Rotation dynamically set */
+      animation: fly-straight 8s linear infinite; /* Straight-line animation */
     }
+
 
     .airplane::after {
       content: '';
@@ -139,10 +140,10 @@
     
     @keyframes fly-straight {
       0% {
-        transform: translateX(-10%) rotate(180deg); /* Starts off-screen left */
+        transform: translate(var(--start-x, 0), var(--start-y, 0)) rotate(var(--rotation, 0deg));
       }
       100% {
-        transform: translateX(110%) rotate(180deg); /* Ends off-screen right */
+        transform: translate(var(--end-x, 100vw), var(--end-y, 100vh)) rotate(var(--rotation, 0deg));
       }
     }
 
@@ -183,15 +184,36 @@
 
   <!-- Airplanes Background -->
   <div class="airplane-container">
-    <div class="airplane" style="top: 10%; animation-delay: 0s; --airplane-size: 30px;"></div>
-    <div class="airplane" style="top: 50%; animation-delay: 2s; --airplane-size: 50px;"></div>
-    <div class="airplane" style="top: 80%; animation-delay: 4s; --airplane-size: 60px;"></div>
+    <div class="airplane"
+       style="--airplane-size: 40px; --start-x: -10%; --start-y: 10%; --end-x: 110%; --end-y: 90%; --rotation: 45deg; animation-delay: 0s;"></div>
+    <div class="airplane"
+       style="--airplane-size: 50px; --start-x: 110%; --start-y: 20%; --end-x: -10%; --end-y: 80%; --rotation: 225deg; animation-delay: 2s;"></div>
+    <div class="airplane"
+       style="--airplane-size: 60px; --start-x: 50%; --start-y: -10%; --end-x: 50%; --end-y: 110%; --rotation: 90deg; animation-delay: 4s;"></div>
   </div>
+
 
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2024 Comhok | Created for the Fatoe</p>
   </footer>
+
+<script>
+  document.querySelectorAll('.airplane').forEach(airplane => {
+    const randomStartX = `${Math.random() * 100 - 10}vw`; // Random start X (-10% to 100%)
+    const randomStartY = `${Math.random() * 100 - 10}vh`; // Random start Y (-10% to 100%)
+    const randomEndX = `${Math.random() * 100 - 10}vw`; // Random end X (-10% to 100%)
+    const randomEndY = `${Math.random() * 100 - 10}vh`; // Random end Y (-10% to 100%)
+    const angle = Math.atan2(parseFloat(randomEndY) - parseFloat(randomStartY), parseFloat(randomEndX) - parseFloat(randomStartX)) * (180 / Math.PI); // Calculate rotation angle
+    
+    airplane.style.setProperty('--start-x', randomStartX);
+    airplane.style.setProperty('--start-y', randomStartY);
+    airplane.style.setProperty('--end-x', randomEndX);
+    airplane.style.setProperty('--end-y', randomEndY);
+    airplane.style.setProperty('--rotation', `${angle}deg`);
+  });
+</script>
+
 </body>
 </html>
