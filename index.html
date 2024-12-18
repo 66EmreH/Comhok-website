@@ -109,10 +109,11 @@
 
     .airplane {
       position: absolute;
-      width: 40px;
-      height: 40px;
-      background: url('assets/pngegg.png') no-repeat center/contain; 
-      animation: fly 8s linear infinite;
+      width: var(--airplane-size, 40px); /* Default size is 40px */
+      height: var(--airplane-size, 40px); /* Matches width */
+      background: url('assets/pngegg.png') no-repeat center/contain; /* Ensure this points to the correct image */
+      transform: rotate(180deg); /* Rotates the airplane to face right */
+      animation: fly-straight 8s linear infinite; /* Assigns animation for straight-line flight */
     }
 
     .airplane::after {
@@ -133,6 +134,15 @@
       }
       100% {
         transform: translate(110vw, -50vh) rotate(360deg);
+      }
+    }
+    
+    @keyframes fly-straight {
+      0% {
+        transform: translateX(-10%) rotate(180deg); /* Starts off-screen left */
+      }
+      100% {
+        transform: translateX(110%) rotate(180deg); /* Ends off-screen right */
       }
     }
 
@@ -173,10 +183,11 @@
 
   <!-- Airplanes Background -->
   <div class="airplane-container">
-    <div class="airplane" style="top: 10%; left: -10%; animation-delay: 0s;"></div>
-    <div class="airplane" style="top: 50%; left: -20%; animation-delay: 2s;"></div>
-    <div class="airplane" style="top: 80%; left: -30%; animation-delay: 4s;"></div>
+    <div class="airplane" style="top: 10%; animation-delay: 0s; --airplane-size: 30px;"></div>
+    <div class="airplane" style="top: 50%; animation-delay: 2s; --airplane-size: 50px;"></div>
+    <div class="airplane" style="top: 80%; animation-delay: 4s; --airplane-size: 60px;"></div>
   </div>
+
 
   <!-- Footer -->
   <footer>
