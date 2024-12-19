@@ -205,7 +205,7 @@
     const randomStartY = `${Math.random() * 100 - 10}vh`; // Random start Y (-10% to 100%)
     const randomEndX = `${Math.random() * 100 - 10}vw`; // Random end X (-10% to 100%)
     const randomEndY = `${Math.random() * 100 - 10}vh`; // Random end Y (-10% to 100%)
-    const angle = Math.atan2(parseFloat(randomEndY) - parseFloat(randomStartY), parseFloat(randomEndX) - parseFloat(randomStartX)) * (180 / Math.PI); // Calculate rotation angle
+    const angle = Math.atan2(parseFloat(randomEndY) - parseFloat(randomStartY), parseFloat(randomEndX) - parseFloat(randomStartX)) * (180 / Math.PI) *2 ; // Calculate rotation angle
     
     airplane.style.setProperty('--start-x', randomStartX);
     airplane.style.setProperty('--start-y', randomStartY);
