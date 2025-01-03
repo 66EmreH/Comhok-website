@@ -21,28 +21,26 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: hidden; /* To hide airplanes flying outside */
+      overflow: hidden;
     }
 
     /* Header Styling */
     header {
-      background: linear-gradient(to right, #e6f7ff, #00509e); /* Gradient for header */
+      background: linear-gradient(to right, #e6f7ff, #00509e);
       color: white;
       padding: 0.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 1000;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     }
 
-    header img {
-      height: 50px;
-      width: 50px;
-      object-fit: contain;
-      margin-right: 0.5rem;
+    .header-container {
+      max-width: 70%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     header h1 {
@@ -51,31 +49,48 @@
       white-space: nowrap;
     }
 
-    nav {
-      flex-grow: 1;
-      text-align: center;
+    #menu-button {
+      background: white;
+      color: #00509e;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    nav a {
-      color: white;
+    #dropdown-menu {
+      list-style: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+
+    #dropdown-menu li {
+      margin: 0.5rem 0;
+    }
+
+    #dropdown-menu li a {
       text-decoration: none;
-      margin: 0 1rem;
+      color: #00509e;
       font-size: 1.2rem;
     }
 
-    nav a:hover {
+    #dropdown-menu li a:hover {
       text-decoration: underline;
     }
 
-    .search-bar {
-      flex-shrink: 0;
+    .hidden {
+      display: none;
     }
 
-    .search-bar input {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
+    .visible {
+      display: block;
     }
 
     /* Main Content Styling */
@@ -86,13 +101,15 @@
 
     /* Footer Styling */
     footer {
-      background: linear-gradient(to left, #003366, #00509e); /* Gradient for footer */
+      background: linear-gradient(to left, #003366, #00509e);
       color: white;
       text-align: center;
       padding: 1rem;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+    }
+
+    .footer-container {
+      max-width: 70%;
+      margin: 0 auto;
     }
 
     /* Airplanes Background */
@@ -102,26 +119,26 @@
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none; /* Prevent interaction */
+      pointer-events: none;
       overflow: hidden;
-      z-index: -1; /* Behind the content */
+      z-index: -1;
     }
 
     .airplane {
       position: absolute;
-      width: var(--airplane-size, 40px); /* Parameterized size */
+      width: var(--airplane-size, 40px);
       height: var(--airplane-size, 40px);
-      background: url('assets/pngegg.png') no-repeat center/contain; /* Airplane image */
-      transform: rotate(var(--rotation, 0deg)); /* Rotation dynamically set */
-      animation: fly-straight 8s linear infinite; /* Straight-line animation */
+      background: url('assets/pngegg.png') no-repeat center/contain;
+      transform: rotate(var(--rotation, 0deg));
+      animation: fly-straight 8s linear infinite;
     }
-
 
     .airplane::after {
       content: '';
       position: absolute;
       top: 50%;
-      left: -50px;
+      left: 100%;
+      transform: translate(-50%, -50%);
       width: 50px;
       height: 2px;
       background: rgba(255, 255, 255, 0.5);
@@ -137,7 +154,7 @@
         transform: translate(110vw, -50vh) rotate(360deg);
       }
     }
-    
+
     @keyframes fly-straight {
       0% {
         transform: translate(var(--start-x, 0), var(--start-y, 0)) rotate(var(--rotation, 0deg));
@@ -162,18 +179,20 @@
 <body>
   <!-- Header -->
   <header>
-    <div style="display: flex; align-items: center;">
-      <img src="assets/logo.png" alt="Logo" /> <!-- Replace with your logo -->
-      <h1>Comhok</h1>
-    </div>
-    <nav>
-      <a href="#statistieken">Statistieken</a>
-      <a href="#links">Links</a>
-      <a href="#varia">Varia</a>
-      <a href="#random">Random</a>
-    </nav>
-    <div class="search-bar">
-      <input type="text" placeholder="Search..." />
+    <div class="header-container">
+      <div style="display: flex; align-items: center;">
+        <img src="assets/logo.png" alt="Logo" />
+        <h1>Comhok</h1>
+      </div>
+      <nav>
+        <button id="menu-button">Menu</button>
+        <ul id="dropdown-menu" class="hidden">
+          <li><a href="#statistieken">Statistieken</a></li>
+          <li><a href="#links">Links</a></li>
+          <li><a href="#varia">Varia</a></li>
+          <li><a href="#random">Random</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -192,25 +211,36 @@
        style="--airplane-size: 60px; --start-x: 50%; --start-y: -10%; --end-x: 50%; --end-y: 110%; --rotation: 90deg; animation-delay: 4s;"></div>
   </div>
 
-
-
   <!-- Footer -->
   <footer>
-    <p>&copy; 2024 Comhok | Created for the Fatoe</p>
+    <div class="footer-container">
+      <p>&copy; 2024 Comhok | Created for the Fatoe</p>
+    </div>
   </footer>
 
 <script>
+  // Dropdown Menu Functionality
+  const menuButton = document.getElementById('menu-button');
+  const dropdownMenu = document.getElementById('dropdown-menu');
+
+  menuButton.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('visible');
+    dropdownMenu.classList.toggle('hidden');
+  });
+
+  // Airplane Animation Fixes
   document.querySelectorAll('.airplane').forEach(airplane => {
-    const randomStartX = `${Math.random() * 100 - 10}vw`; // Random start X (-10% to 100%)
-    const randomStartY = `${Math.random() * 100 - 10}vh`; // Random start Y (-10% to 100%)
-    const randomEndX = `${Math.random() * 100 - 10}vw`; // Random end X (-10% to 100%)
-    const randomEndY = `${Math.random() * 100 - 10}vh`; // Random end Y (-10% to 100%)
-    const angle = Math.atan2(parseFloat(randomEndY) - parseFloat(randomStartY), parseFloat(randomEndX) - parseFloat(randomStartX)) * (180 / Math.PI) *2 ; // Calculate rotation angle
-    
-    airplane.style.setProperty('--start-x', randomStartX);
-    airplane.style.setProperty('--start-y', randomStartY);
-    airplane.style.setProperty('--end-x', randomEndX);
-    airplane.style.setProperty('--end-y', randomEndY);
+    const startX = Math.random() * 100 - 10; // Random start X (% of viewport)
+    const startY = Math.random() * 100 - 10; // Random start Y (% of viewport)
+    const endX = Math.random() * 100 - 10; // Random end X (% of viewport)
+    const endY = Math.random() * 100 - 10; // Random end Y (% of viewport)
+
+    const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+
+    airplane.style.setProperty('--start-x', `${startX}vw`);
+    airplane.style.setProperty('--start-y', `${startY}vh`);
+    airplane.style.setProperty('--end-x', `${endX}vw`);
+    airplane.style.setProperty('--end-y', `${endY}vh`);
     airplane.style.setProperty('--rotation', `${angle}deg`);
   });
 </script>
