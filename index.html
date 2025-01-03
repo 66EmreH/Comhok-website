@@ -242,8 +242,12 @@
   const dropdownMenu = document.getElementById('dropdown-menu');
 
   menuButton.addEventListener('click', () => {
+    console.log("Button clicked!");
+    console.log("Dropdown Menu:", dropdownMenu);
+    console.log("Classes before toggle:", dropdownMenu.classList);
     dropdownMenu.classList.toggle('visible');
     dropdownMenu.classList.toggle('hidden');
+    console.log("Classes after toggle:", dropdownMenu.classList);
   });
 
   // Airplane Animation Fixes
