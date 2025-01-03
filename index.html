@@ -66,6 +66,7 @@
       border-radius: 5px;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
       width: 150px; /* Set a fixed width for better appearance */
+      position: absolute; /* Ensure proper positioning */
     }
 
     #dropdown-menu li {
@@ -90,8 +91,8 @@
     .visible {
       display: block;
       position: absolute;
-      top: 100%; /* Dropdown appears below the button */
-      left: 0;
+      top: calc(100% + 5px); /* Dropdown appears slightly below the button */
+      left: 0; /* Align with the button */
       z-index: 1000; /* Ensure it appears above other elements */
     }
 
@@ -217,7 +218,7 @@
   <!-- Main Content -->
   <div class="main-content">
     <div class="welcome-textbox">
-      Welcome to the Comhok website! This is your starting point to explore our features and resources. Feel free to navigate using the menu above.
+      Welcome to the Comhok website! This is a beun platform, if you have recommendations feel free to reach out to Sjon.
     </div>
   </div>
 
